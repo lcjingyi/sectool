@@ -14,7 +14,9 @@ var DirScanCmd = &cobra.Command{
 	Use:   "dirScan",
 	Short: "dir扫描",
 	Run: func(cmd *cobra.Command, args []string) {
-		if url != "" {
+		if url != "" && path != "" {
+			pkg.DirBlasting(url, path)
+		} else if url != "" && path == "" {
 			pkg.DirBlasting(url, path)
 		}
 	},

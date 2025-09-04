@@ -29,7 +29,12 @@ func IcmpPing(dst string) error {
 	if err != nil {
 		return fmt.Errorf("创建连接失败: %v", err)
 	}
-	defer conn.Close()
+	defer func(conn net.Conn) {
+		err := conn.Close()
+		if err != nil {
+			fmt.Println("关闭连接失败:", err)
+		}
+	}(conn)
 
 	// 构造 ICMP Echo Request 包
 	var icmp [8 + 32]byte                                            // 8字节头+32字节数据

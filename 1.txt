@@ -1,0 +1,44 @@
+1. 信息收集（Reconnaissance）
+    子域名枚举（如集成 subfinder、dns 查询等）
+    端口扫描（如 TCP/UDP 扫描，集成 masscan/nmap）
+    指纹识别（如 web 服务指纹、操作系统指纹）
+    Whois、IP 归属地查询
+2. 网络通信
+    HTTP 请求模块（支持 GET/POST/自定义 header/cookie）
+    WebSocket 客户端
+    DNS 查询/解析
+    ICMP（Ping）探测
+3. 数据处理
+    Hash 计算（MD5、SHA1、SHA256、HMAC 等）
+    编解码（URL、Base64、Base32、Hex、JWT、HTML、Unicode 等）
+    文件操作（分割、合并、加密、解密、隐写）
+4. 加解密模块
+    对称加密（AES、DES、RC4、ChaCha20 等）
+    非对称加密（RSA、ECC、SM2 等）
+    国密算法支持（SM3、SM4、SM2）
+    哈希碰撞/爆破工具
+5. Web 安全
+    XSS/SQL 注入 payload 生成
+    SSRF/LFI/RFI payload 生成
+    常见 Webshell 编码/免杀
+    HTTP 请求重放/抓包/篡改
+6. 密码学工具
+    字典生成（自定义规则、变形、组合）
+    弱口令检测
+    Hash 爆破（字典、暴力、彩虹表）
+7. 编码与免杀
+    Shellcode 编码/加密/混淆
+    PE 文件操作（如壳、注入、免杀）
+    反沙箱、反调试检测
+8. 网络隧道/代理
+    Socks5/HTTP 代理客户端
+    端口转发
+    简易反弹 shell
+9. 其他常用红队工具
+    C2 通信模块（如 HTTP、DNS、ICMP 通道）
+    进程注入、DLL 注入（仅学习用途）
+    简易后门/监听器（仅学习用途）
+    免杀 payload 生成器
+
+
+文本去重
