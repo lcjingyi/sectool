@@ -5,7 +5,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/jingyi/sectool/pkg"
+	"github.com/jingyi/sectool/pkg/networkCommunicationModule"
 	"github.com/spf13/cobra"
 )
 
@@ -20,7 +20,7 @@ var PingCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		if ip != "" {
 			for i := 0; i < 4; i++ {
-				err := pkg.IcmpPing(ip)
+				err := networkCommunicationModule.IcmpPing(ip)
 				if err != nil {
 					return
 				}
@@ -51,7 +51,7 @@ var PingCmd = &cobra.Command{
 			scanner := bufio.NewScanner(f)
 			for scanner.Scan() {
 				line := scanner.Text()
-				err := pkg.IcmpPing(line)
+				err := networkCommunicationModule.IcmpPing(line)
 				if err != nil {
 					return
 				}

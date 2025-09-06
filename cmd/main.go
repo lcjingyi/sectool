@@ -12,7 +12,13 @@ func main() {
 		Short: "Small tools",
 	}
 
-	rootCmd.AddCommand(UrlCmd, BaseCmd, DirScanCmd, PingCmd, deduplicateFileCmd)
+	rootCmd.AddCommand(
+		UrlCmd,
+		BaseCmd,
+		DirScanCmd,
+		PingCmd,
+		deduplicateFileCmd,
+		fileEncryptoCmd)
 	_, err := rootCmd.ExecuteC()
 	if err != nil {
 		fmt.Println(err)

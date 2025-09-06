@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/jingyi/sectool/pkg"
+	"github.com/jingyi/sectool/pkg/dataProcessModule/codecModule"
 	"github.com/spf13/cobra"
 )
 
@@ -22,13 +22,13 @@ var BaseCmd = &cobra.Command{
 	cmd base --encode-b64 hello`,
 	Run: func(cmd *cobra.Command, args []string) {
 		if b64Encode != "" {
-			fmt.Println(pkg.B64Encode(b64Encode))
+			fmt.Println(codecModule.B64Encode(b64Encode))
 		} else if b64Decode != "" {
-			fmt.Println(pkg.B64Decode(b64Decode))
+			fmt.Println(codecModule.B64Decode(b64Decode))
 		} else if b32Encode != "" {
-			fmt.Println(pkg.B32Eecode(b32Encode))
+			fmt.Println(codecModule.B32Eecode(b32Encode))
 		} else if b32Decode != "" {
-			fmt.Println(pkg.B32Decode(b32Decode))
+			fmt.Println(codecModule.B32Decode(b32Decode))
 		}
 
 	},

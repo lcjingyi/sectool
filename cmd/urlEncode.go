@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/jingyi/sectool/pkg"
+	"github.com/jingyi/sectool/pkg/dataProcessModule/codecModule"
 	"github.com/spf13/cobra"
 )
 
@@ -17,9 +17,9 @@ var UrlCmd = &cobra.Command{
 	Short: "url编码",
 	Run: func(cmd *cobra.Command, args []string) {
 		if urlEncodeStr != "" {
-			fmt.Println(pkg.MyUrlEncode(urlEncodeStr))
+			fmt.Println(codecModule.MyUrlEncode(urlEncodeStr))
 		} else if urlDecodeStr != "" {
-			fmt.Println(pkg.MyUrlDncode(urlDecodeStr))
+			fmt.Println(codecModule.MyUrlDncode(urlDecodeStr))
 		} else {
 			fmt.Println("error")
 		}

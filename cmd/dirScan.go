@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/jingyi/sectool/pkg"
+	"github.com/jingyi/sectool/pkg/informationCollectionModule"
 	"github.com/spf13/cobra"
 )
 
@@ -15,9 +15,9 @@ var DirScanCmd = &cobra.Command{
 	Short: "dir扫描",
 	Run: func(cmd *cobra.Command, args []string) {
 		if url != "" && path != "" {
-			pkg.DirBlasting(url, path)
+			informationCollectionModule.DirBlasting(url, path)
 		} else if url != "" && path == "" {
-			pkg.DirBlasting(url, path)
+			informationCollectionModule.DirBlasting(url, path)
 		}
 	},
 }

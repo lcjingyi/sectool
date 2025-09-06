@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/jingyi/sectool/pkg"
+	"github.com/jingyi/sectool/pkg/dataProcessModule/fileProcessModule"
 	"github.com/spf13/cobra"
 )
 
@@ -24,7 +24,7 @@ var deduplicateFileCmd = &cobra.Command{
 		//TODO: 实现文件去重功能
 		if inputFilePath != "" && outputFilePath != "" {
 			//TODO:调用文件去重函数
-			_ = pkg.DeduplicateFile(inputFilePath, outputFilePath)
+			_ = fileProcessModule.DeduplicateFile(inputFilePath, outputFilePath)
 		}
 	},
 }
