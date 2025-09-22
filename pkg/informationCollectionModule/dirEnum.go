@@ -5,32 +5,49 @@ import (
 	"fmt"
 	"net/http"
 	"os"
-	"strings"
+	"sync"
 )
 
-func Scanning(url string) {
-	resp, err := http.Get(url)
-	if err != nil {
-		fmt.Println(err)
+func requestSend(url string, dirs <-chan string, wg *sync.WaitGroup, mu *sync.Mutex) {
+	defer wg.Done()
+	for d := range dirs {
+		resp, err := http.Get(fmt.Sprintf("%s/%s", url, d))
+		if err == nil {
+			if resp.StatusCode == 200 {
+				fmt.Println(d)
+			}
+		}
 	}
-	defer resp.Body.Close()
 
-	if resp.StatusCode != 0 {
-		fmt.Printf("URL: %s, 状态码: %d\n", url, resp.StatusCode)
-	}
 }
 
-func DirBlasting(url, path string) {
-	url = strings.TrimRight(url, "/")
-	f, err := os.Open(path)
+func DirScan(url string) error {
+
+	fmt.Println("start...")
+	//打开文件
+	f, err := os.Open("../script/dir.txt")
 	if err != nil {
-		return
+		return fmt.Errorf("文件打开失败")
 	}
 	defer f.Close()
 	scanner := bufio.NewScanner(f)
-	for scanner.Scan() {
-		line := scanner.Text()
-		request := url + "/" + line
-		Scanning(request)
+
+	var wg sync.WaitGroup
+	var mu sync.Mutex
+	const maxBuffer = 1000
+	const numGoroutine = 100
+	var buffer = make(chan string, maxBuffer) //管道
+
+	for range numGoroutine {
+		wg.Add(1)
+		go requestSend(url, buffer, &wg, &mu)
 	}
+
+	for scanner.Scan() {
+		buffer <- scanner.Text()
+	}
+	close(buffer)
+	wg.Wait()
+	return nil
+
 }

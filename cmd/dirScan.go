@@ -1,28 +1,29 @@
 package main
 
 import (
+	"fmt"
+
 	"github.com/jingyi/sectool/pkg/informationCollectionModule"
 	"github.com/spf13/cobra"
 )
 
 var (
-	url  string
-	path string
+	url string
 )
 
 var DirScanCmd = &cobra.Command{
 	Use:   "dirScan",
 	Short: "dir扫描",
 	Run: func(cmd *cobra.Command, args []string) {
-		if url != "" && path != "" {
-			informationCollectionModule.DirBlasting(url, path)
-		} else if url != "" && path == "" {
-			informationCollectionModule.DirBlasting(url, path)
+		if url != "" {
+			err := informationCollectionModule.DirScan(url)
+			if err != nil {
+				fmt.Println(err)
+			}
 		}
 	},
 }
 
 func init() {
 	DirScanCmd.Flags().StringVarP(&url, "u", "", "", "目标地址")
-	DirScanCmd.Flags().StringVarP(&path, "p", "", "", "字典地址")
 }

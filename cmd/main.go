@@ -18,7 +18,9 @@ func main() {
 		DirScanCmd,
 		PingCmd,
 		deduplicateFileCmd,
-		fileEncryptoCmd)
+		fileEncryptoCmd,
+		portScanfCmd,
+		subdomainEnum)
 	_, err := rootCmd.ExecuteC()
 	if err != nil {
 		fmt.Println(err)
